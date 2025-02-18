@@ -29,21 +29,21 @@ public class TrafficSimulation {
     public static void main(String[] args) {
         System.out.println("===== Normal Traffic Queue Test =====");
         // Normal Traffic Queue Simulation
-        TrafficQueue trafficQueue = new TrafficQueue();
+        var trafficQueue = new TrafficList();
         trafficQueue.enqueue("Car1");
         trafficQueue.enqueue("Car2");
         trafficQueue.dequeue(); // Car1 passes
 
         System.out.println("\n===== Emergency Traffic Queue Test (Ambulance in Middle) =====");
         // Emergency Vehicle Priority Queue Simulation
-        EmergencyTrafficQueue emergencyQueue = new EmergencyTrafficQueue();
+        var emergencyQueue = new EmergencyTrafficQueue();
 
         // ADD VEHICLES IN RANDOM ORDER TO TEST PRIORITY HANDLING
-        emergencyQueue.enqueue("Car A", 1);  // Normal Car (Lowest Priority)
-        emergencyQueue.enqueue("Ambulance", 3);  // Ambulance (Highest Priority)
-        emergencyQueue.enqueue("Car B", 1);  // Normal Car
-        emergencyQueue.enqueue("Car C", 1);  // Normal Car
-        emergencyQueue.enqueue("Fire Truck", 2);  // Fire Truck (Medium Priority)
+        emergencyQueue.enqueue("Car A", 1); // Normal Car (Lowest Priority)
+        emergencyQueue.enqueue("Ambulance", 3); // Ambulance (Highest Priority)
+        emergencyQueue.enqueue("Car B", 1); // Normal Car
+        emergencyQueue.enqueue("Car C", 1); // Normal Car
+        emergencyQueue.enqueue("Fire Truck", 2); // Fire Truck (Medium Priority)
 
         // Process vehicles - should follow priority order
         emergencyQueue.dequeue(); // 🚑 Ambulance should pass first (priority 3)
