@@ -2,7 +2,7 @@ package trafficmanagement;
 
 import java.util.ArrayList;
 
-public class TrafficReRouteList {
+public class TrafficRerouteList {
     private final ArrayList<String> rerouteList = new ArrayList<>();
 
     public void insertFront(String route) {
