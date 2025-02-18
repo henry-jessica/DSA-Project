@@ -1,7 +1,6 @@
 package trafficmanagement;
 
-// here we are implementing the priority queue
-
+// Implementing a priority queue for emergency vehicles
 import java.util.PriorityQueue;
 
 class Vehicle implements Comparable<Vehicle> {
@@ -15,7 +14,7 @@ class Vehicle implements Comparable<Vehicle> {
 
     @Override
     public int compareTo(Vehicle other) {
-        return Integer.compare(other.priority, this.priority); // Higher priority first
+        return other.priority - this.priority; // Higher priority first
     }
 
     @Override

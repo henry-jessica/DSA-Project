@@ -1,32 +1,8 @@
-//package trafficmanagement;
-//
-//public class TrafficSimulation {
-//    public static void main(String[] args) {
-//        // Normal Traffic Queue Simulation
-//        TrafficQueue trafficQueue = new TrafficQueue();
-//        trafficQueue.enqueue("Car1");
-//        trafficQueue.enqueue("Car2");
-//        trafficQueue.dequeue(); // Car1 passes
-//
-//        // Emergency Vehicle Priority Queue Simulation
-//        EmergencyTrafficQueue emergencyQueue = new EmergencyTrafficQueue();
-//        emergencyQueue.enqueue("Ambulance", 3); // Highest priority
-//        emergencyQueue.enqueue("Fire Truck", 2);
-//        emergencyQueue.enqueue("Car", 1);
-//        emergencyQueue.dequeue(); // Ambulance passes first
-//
-//        // Rerouting Example
-//        TrafficRerouteQueue rerouteSystem = new TrafficRerouteQueue();
-//        rerouteSystem.insertFront("Route A");
-//        rerouteSystem.insertFront("Route B");
-//        rerouteSystem.deleteRear(); // Remove old route
-//    }
-//}
-
 package trafficmanagement;
 
 public class TrafficSimulation {
     public static void main(String[] args) {
+    	
         System.out.println("===== Normal Traffic Queue Test =====");
         // Normal Traffic Queue Simulation
         TrafficQueue trafficQueue = new TrafficQueue();
@@ -46,11 +22,11 @@ public class TrafficSimulation {
         emergencyQueue.enqueue("Fire Truck", 2);  // Fire Truck (Medium Priority)
 
         // Process vehicles - should follow priority order
-        emergencyQueue.dequeue(); // 🚑 Ambulance should pass first (priority 3)
-        emergencyQueue.dequeue(); // 🚒 Fire Truck should pass second (priority 2)
-        emergencyQueue.dequeue(); // 🚗 Car A should pass third (priority 1)
-        emergencyQueue.dequeue(); // 🚗 Car B should pass fourth (priority 1)
-        emergencyQueue.dequeue(); // 🚗 Car C should pass last (priority 1)
+        emergencyQueue.dequeue(); 
+        emergencyQueue.dequeue(); 
+        emergencyQueue.dequeue();
+        emergencyQueue.dequeue(); 
+        emergencyQueue.dequeue();
 
         System.out.println("\n===== Traffic Rerouting Test =====");
         // Rerouting Example
@@ -58,5 +34,28 @@ public class TrafficSimulation {
         rerouteSystem.insertFront("Route A");
         rerouteSystem.insertFront("Route B");
         rerouteSystem.deleteRear(); // Remove old route (Route A)
+        
+        
+        
+        //////////////////////////
+        // Normal Traffic Queue Simulation
+//      TrafficQueue trafficQueue = new TrafficQueue();
+//      trafficQueue.enqueue("Car1");
+//      trafficQueue.enqueue("Car2");
+//      trafficQueue.dequeue(); // Car1 passes
+//
+//      // Emergency Vehicle Priority Queue Simulation
+//      EmergencyTrafficQueue emergencyQueue = new EmergencyTrafficQueue();
+//      emergencyQueue.enqueue("Ambulance", 3); // Highest priority
+//      emergencyQueue.enqueue("Fire Truck", 2);
+//      emergencyQueue.enqueue("Car", 1);
+//      emergencyQueue.dequeue(); // Ambulance passes first
+//
+//      // Rerouting Example
+//      TrafficRerouteQueue rerouteSystem = new TrafficRerouteQueue();
+//      rerouteSystem.insertFront("Route A");
+//      rerouteSystem.insertFront("Route B");
+//      rerouteSystem.deleteRear(); // Remove old route
+        
     }
 }
