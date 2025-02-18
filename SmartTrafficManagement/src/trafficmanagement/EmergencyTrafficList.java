@@ -11,9 +11,13 @@ public class EmergencyTrafficList {
     }
 
     public void enqueue(String vehicleType, int priority) {
-        vehicleList.add(new Vehicle(vehicleType, priority));
+        enqueue(new Vehicle(vehicleType, priority));
+    }
+
+    public void enqueue(Vehicle vehicle) {
+        vehicleList.add(vehicle);
         Collections.sort(vehicleList);
-        System.out.println(vehicleType + " (priority " + priority + ") added to queue.");
+        System.out.println(vehicle.type + " (priority " + vehicle.priority + ") added to queue.");
     }
 
     public void dequeue() {
