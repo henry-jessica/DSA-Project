@@ -12,6 +12,10 @@ public class TrafficList {
     public Vehicle Dequeue() {
         if (trafficList.isEmpty())
             return null;
-        return trafficList.removeLast();
+        return trafficList.removeFirst();
+    }
+
+    public boolean isEmpty() {
+        return trafficList.isEmpty();
     }
 }
