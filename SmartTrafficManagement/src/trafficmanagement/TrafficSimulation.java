@@ -29,7 +29,7 @@ public class TrafficSimulation {
     public static void main(String[] args) {
         System.out.println("===== Normal Traffic Queue Test =====");
         // Normal Traffic Queue Simulation
-        TrafficQueue trafficQueue = new TrafficQueue();
+        var trafficQueue = new TrafficList();
         trafficQueue.enqueue("Car1");
         trafficQueue.enqueue("Car2");
         trafficQueue.dequeue(); // Car1 passes
