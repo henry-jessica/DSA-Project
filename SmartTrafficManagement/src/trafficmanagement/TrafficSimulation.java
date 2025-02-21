@@ -46,11 +46,11 @@ public class TrafficSimulation {
         emergencyQueue.enqueue("Fire Truck", 2); // Fire Truck (Medium Priority)
 
         // Process vehicles - should follow priority order
-        emergencyQueue.dequeue(); // 🚑 Ambulance should pass first (priority 3)
-        emergencyQueue.dequeue(); // 🚒 Fire Truck should pass second (priority 2)
-        emergencyQueue.dequeue(); // 🚗 Car A should pass third (priority 1)
-        emergencyQueue.dequeue(); // 🚗 Car B should pass fourth (priority 1)
-        emergencyQueue.dequeue(); // 🚗 Car C should pass last (priority 1)
+        emergencyQueue.dequeue(); // Ambulance should pass first (priority 3)
+        emergencyQueue.dequeue(); // Fire Truck should pass second (priority 2)
+        emergencyQueue.dequeue(); // Car A should pass third (priority 1)
+        emergencyQueue.dequeue(); // Car B should pass fourth (priority 1)
+        emergencyQueue.dequeue(); // Car C should pass last (priority 1)
 
         System.out.println("\n===== Traffic Rerouting Test =====");
         // Rerouting Example
