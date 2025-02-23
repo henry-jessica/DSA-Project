@@ -1,0 +1,6 @@
+Car1,1
+Ambulance,3
+Car2,1
+FireTruck,2
+PoliceCar,2
+Car3,1
