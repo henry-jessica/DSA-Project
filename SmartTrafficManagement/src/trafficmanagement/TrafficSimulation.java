@@ -1,62 +1,42 @@
-//package trafficmanagement;
-//
-//public class TrafficSimulation {
-//    public static void main(String[] args) {
-//        // Normal Traffic Queue Simulation
-//        TrafficQueue trafficQueue = new TrafficQueue();
-//        trafficQueue.enqueue("Car1");
-//        trafficQueue.enqueue("Car2");
-//        trafficQueue.dequeue(); // Car1 passes
-//
-//        // Emergency Vehicle Priority Queue Simulation
-//        EmergencyTrafficQueue emergencyQueue = new EmergencyTrafficQueue();
-//        emergencyQueue.enqueue("Ambulance", 3); // Highest priority
-//        emergencyQueue.enqueue("Fire Truck", 2);
-//        emergencyQueue.enqueue("Car", 1);
-//        emergencyQueue.dequeue(); // Ambulance passes first
-//
-//        // Rerouting Example
-//        TrafficRerouteQueue rerouteSystem = new TrafficRerouteQueue();
-//        rerouteSystem.insertFront("Route A");
-//        rerouteSystem.insertFront("Route B");
-//        rerouteSystem.deleteRear(); // Remove old route
-//    }
-//}
-
 package trafficmanagement;
+
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
 
 public class TrafficSimulation {
     public static void main(String[] args) {
-        System.out.println("===== Normal Traffic Queue Test =====");
-        // Normal Traffic Queue Simulation
-        var trafficQueue = new TrafficList();
-        trafficQueue.enqueue("Car1");
-        trafficQueue.enqueue("Car2");
-        trafficQueue.dequeue(); // Car1 passes
+        TrafficManagementQueue queueSystem = new TrafficManagementQueue();
+        TrafficManagementList listSystem = new TrafficManagementList();
 
-        System.out.println("\n===== Emergency Traffic Queue Test (Ambulance in Middle) =====");
-        // Emergency Vehicle Priority Queue Simulation
-        var emergencyQueue = new EmergencyTrafficQueue();
+        String filePath = "src/trafficmanagement/vehicle.txt";
 
-        // ADD VEHICLES IN RANDOM ORDER TO TEST PRIORITY HANDLING
-        emergencyQueue.enqueue("Car A", 1); // Normal Car (Lowest Priority)
-        emergencyQueue.enqueue("Ambulance", 3); // Ambulance (Highest Priority)
-        emergencyQueue.enqueue("Car B", 1); // Normal Car
-        emergencyQueue.enqueue("Car C", 1); // Normal Car
-        emergencyQueue.enqueue("Fire Truck", 2); // Fire Truck (Medium Priority)
+        // Read vehicles from file and enqueue them
+        try (BufferedReader br = new BufferedReader(new FileReader(filePath))) {
+            String line;
+            while ((line = br.readLine()) != null) {
+                String[] parts = line.split(",");
+                String vehicleType = parts[0];
+                int priority = Integer.parseInt(parts[1]);
+                queueSystem.enqueue(vehicleType, priority);
+                listSystem.enqueue(vehicleType, priority);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
-        // Process vehicles - should follow priority order
-        emergencyQueue.dequeue(); // 🚑 Ambulance should pass first (priority 3)
-        emergencyQueue.dequeue(); // 🚒 Fire Truck should pass second (priority 2)
-        emergencyQueue.dequeue(); // 🚗 Car A should pass third (priority 1)
-        emergencyQueue.dequeue(); // 🚗 Car B should pass fourth (priority 1)
-        emergencyQueue.dequeue(); // 🚗 Car C should pass last (priority 1)
+        // Test Queue System
+        System.out.println("===== Queue System Test =====");
+        queueSystem.changePriority("Car2", 4); // Change Car2 priority to 4 just for test 
+        while (!queueSystem.isEmpty()) {
+            queueSystem.dequeue();
+        }
 
-        System.out.println("\n===== Traffic Rerouting Test =====");
-        // Rerouting Example
-        TrafficRerouteQueue rerouteSystem = new TrafficRerouteQueue();
-        rerouteSystem.insertFront("Route A");
-        rerouteSystem.insertFront("Route B");
-        rerouteSystem.deleteRear(); // Remove old route (Route A)
+        // Test List System
+        System.out.println("\n===== List System Test =====");
+        listSystem.changePriority("Car2", 4); // Change Car2 priority to 4 just for test 
+        while (!listSystem.isEmpty()) {
+            listSystem.dequeue();
+        }
     }
 }
