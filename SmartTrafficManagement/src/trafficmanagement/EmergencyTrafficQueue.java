@@ -1,18 +1,10 @@
 package trafficmanagement;
 
-// here we are implementing the priority queue
-
-import java.util.PriorityQueue;
-
 public class EmergencyTrafficQueue {
-    private PriorityQueue<Vehicle> priorityQueue;
-
-    public EmergencyTrafficQueue() {
-        this.priorityQueue = new PriorityQueue<>();
-    }
+    private final MyPriorityQueue<Vehicle> priorityQueue = new MyPriorityQueue<>();
 
     public void enqueue(String vehicleType, int priority) {
-        priorityQueue.add(new Vehicle(vehicleType, priority));
+        priorityQueue.offer(new Vehicle(vehicleType, priority));
         System.out.println(vehicleType + " (priority " + priority + ") added to queue.");
     }
 
