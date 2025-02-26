@@ -20,14 +20,7 @@ import java.util.Queue;
  *            {@link Comparable}.
  */
 public class MyPriorityQueue<T extends Comparable<? super T>> implements Queue<T> {
-    private final List<T> heap; // Underlying array structure for the heap
-
-    /**
-     * Constructor to initialize an empty priority queue.
-     */
-    public MyPriorityQueue() {
-        heap = new ArrayList<>();
-    }
+    private final List<T> heap = new ArrayList<>(); // Underlying array structure for the heap
 
     /**
      * Inserts the specified element into this priority queue.
