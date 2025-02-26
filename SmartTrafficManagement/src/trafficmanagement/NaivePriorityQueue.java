@@ -12,15 +12,8 @@ import java.util.Queue;
  * This implementation does not maintain heap properties but instead stores
  * elements
  * in an unsorted list. Operations like insertion are O(1), while retrieval and
- * removal of the smallest element are O(n) due to linear scans.
+ * removal of the smallest element are O(n) due to searches.
  * </p>
- * 
- * <h3>Time Complexity:</h3>
- * <ul>
- * <li>Insertion (offer, add): O(1) (amortized)</li>
- * <li>Peek (minimum element retrieval): O(n)</li>
- * <li>Removal (poll, remove): O(n)</li>
- * </ul>
  * 
  * @param <T> The type of elements stored in the priority queue. Must implement
  *            {@link Comparable}.
@@ -70,41 +63,85 @@ public class NaivePriorityQueue<T extends Comparable<? super T>> implements Queu
         return list.iterator();
     }
 
+    /**
+     * @return an array containing all the elements in this queue.
+     */
     @Override
     public Object[] toArray() {
         return list.toArray();
     }
 
+    /**
+     * Return an array containing all the elements in this queue.
+     * 
+     * @param a an array in which all the elements should be stored.
+     */
     @Override
     public <T> T[] toArray(T[] a) {
         return list.toArray(a);
     }
 
+    /**
+     * Removes the given element from the queue. Should be avoided when using the
+     * queue because it requires a linear scan.
+     * 
+     * @param o the object to be removed.
+     * @return True if the object was successfully removed, false otherwise.
+     */
     @Override
     public boolean remove(Object o) {
         return list.remove(o);
     }
 
+    /**
+     * Checks if this queue contains all items in the given collection.
+     * 
+     * @param c the collection to be compared with the queue.
+     * @return True if the queue contains all items in c, false otherwise.
+     */
     @Override
     public boolean containsAll(Collection<?> c) {
         return list.containsAll(c);
     }
 
+    /**
+     * Adds all elements in a given collection to the queue.
+     * 
+     * @param c a collection containing all the elements to be added.
+     * @return True if successful, false otherwise.
+     */
     @Override
     public boolean addAll(Collection<? extends T> c) {
         return list.addAll(c);
     }
 
+    /**
+     * Attempts to remove all elements in the given collection from the queue.
+     * 
+     * @param c a collection containing the elements to be removed.
+     * @return True if successful, false otherwise.
+     */
     @Override
     public boolean removeAll(Collection<?> c) {
         return list.removeAll(c);
     }
 
+    /**
+     * Retains only those elements in this queue that are in the specified
+     * collection.
+     *
+     * @param c the collection containing elements to retain.
+     * @return {@code true} if the queue changed as a result, {@code false}
+     *         otherwise.
+     */
     @Override
     public boolean retainAll(Collection<?> c) {
         return list.retainAll(c);
     }
 
+    /**
+     * Removes all elements from the queue.
+     */
     @Override
     public void clear() {
         list.clear();

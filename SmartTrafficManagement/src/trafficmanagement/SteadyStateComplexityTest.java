@@ -3,15 +3,31 @@ package trafficmanagement;
 import java.util.Queue;
 import java.util.concurrent.ThreadLocalRandom;
 
+/**
+ * Tests the performance of the two queue implementations.
+ * This test populates each data structure first, then measures the time taken
+ * to add or remove an item from the populated structure. It then returns the
+ * structure to its previously populated state. It repeats this process many
+ * times and prints the average time taken for each population size to the
+ * terminal.
+ */
 public class SteadyStateComplexityTest {
+    // These two constants specify a range in which the priorities can fall
     static final int MIN_PRIORITY = 1;
     static final int MAX_PRIORITY = 100000;
-    static final int NUM_TRIALS = 10000; // More trials for stable measurements
-    static final int WARMUP_TRIALS = 1000; // JVM warm-up iterations
 
+    // Number of times to run each trial
+    static final int NUM_TRIALS = 10000;
+
+    // Number of trials discarded to warm up JVM
+    static final int WARMUP_TRIALS = 1000;
+
+    // This number grows as the test tries larger input sizes
     static int numInputs;
+
+    // Starting and ending conditions
     static final int INIT_INPUTS = 16;
-    static final int MAX_INPUTS = 1 << 30; // Avoid excessive memory use
+    static final int MAX_INPUTS = 1 << 20;
     static final int GROWTH_FACTOR = 2;
 
     static Vehicle[] vehicles;
@@ -49,17 +65,25 @@ public class SteadyStateComplexityTest {
         }
 
         /** STEP 3: Measure Inserts at Steady-State */
+        // Test binary heap insertion
         totalTime = 0;
         for (int j = 0; j < NUM_TRIALS; j++) {
+            // Make sure timing does not include vehicle object creation
             Vehicle v = new Vehicle("Test", randInt());
+
+            // Always restrict timing to only the method being tested
             startTime = System.nanoTime();
             myPriorityQueue.offer(v);
             endTime = System.nanoTime();
+
             totalTime += (endTime - startTime);
-            myPriorityQueue.poll(); // Keep structure size constant
+
+            // remove the inserted element so n items stays constant
+            myPriorityQueue.poll();
         }
         System.out.print((totalTime / NUM_TRIALS) + ", ");
 
+        // test naive insertion
         totalTime = 0;
         for (int j = 0; j < NUM_TRIALS; j++) {
             Vehicle v = new Vehicle("Test", randInt());
@@ -72,6 +96,7 @@ public class SteadyStateComplexityTest {
         System.out.print((totalTime / NUM_TRIALS) + ", ");
 
         /** STEP 4: Measure Poll (Dequeue) at Steady-State */
+        // Test binary heap polling
         totalTime = 0;
         for (int j = 0; j < NUM_TRIALS; j++) {
             startTime = System.nanoTime();
@@ -82,6 +107,7 @@ public class SteadyStateComplexityTest {
         }
         System.out.print((totalTime / NUM_TRIALS) + ", ");
 
+        // Test naive polling
         totalTime = 0;
         for (int j = 0; j < NUM_TRIALS; j++) {
             startTime = System.nanoTime();
@@ -93,14 +119,18 @@ public class SteadyStateComplexityTest {
         System.out.println(totalTime / NUM_TRIALS);
     }
 
-    /** Ensures consistent randomized data */
+    /**
+     * Randomizes the vehicles, giving each a unique name
+     */
     private static void randomizeVehicles() {
         for (int i = 0; i < numInputs; i++) {
             vehicles[i] = new Vehicle(Integer.toString(i), randInt());
         }
     }
 
-    /** Generates a random priority */
+    /**
+     * Returns a random integer between the two specified constants
+     */
     private static int randInt() {
         return ThreadLocalRandom.current().nextInt(MIN_PRIORITY, MAX_PRIORITY);
     }
