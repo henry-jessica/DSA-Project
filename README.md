@@ -1,7 +1,4 @@
 # DSA-Project
-## Traffic Management System - 2025
-
-# DSA-Project
 
 ## Traffic Management System - 2025
 
