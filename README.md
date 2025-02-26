@@ -1,8 +1,8 @@
-# DSA-Project
+### DSA-Project
 
-## Traffic Management System - 2025
+### Traffic Management System - 2025
 
-## Overview
+#### Overview
 
 This project presents a **Smart Traffic Management System** aimed at addressing urban traffic congestion using efficient data structures. The system utilises **queue** and **list** data structures to optimise vehicle flow, prioritise emergency vehicles, and adapt dynamically to real-time traffic conditions. 
 
