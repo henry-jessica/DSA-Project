@@ -172,7 +172,9 @@ public class MyPriorityQueue<T extends Comparable<? super T>> implements Queue<T
      */
     @Override
     public Iterator<T> iterator() {
-        return heap.iterator();
+        List<T> sortedHeap = new ArrayList<>(heap);
+        sortedHeap.sort(null); // Sorts in ascending order
+        return sortedHeap.iterator();
     }
 
     /**
@@ -197,7 +199,19 @@ public class MyPriorityQueue<T extends Comparable<? super T>> implements Queue<T
      */
     @Override
     public boolean remove(Object o) {
-        return heap.remove(o);
+        int index = heap.indexOf(o);
+        if (index == -1) {
+            return false; // Element not found
+        }
+
+        int lastIndex = heap.size() - 1;
+        if (index == lastIndex) {
+            heap.remove(lastIndex); // If it's the last element, just remove it
+        } else {
+            heap.set(index, heap.remove(lastIndex)); // Swap with last and remove
+            bubbleDown(index); // Restore heap property
+        }
+        return true;
     }
 
     /**
@@ -213,7 +227,11 @@ public class MyPriorityQueue<T extends Comparable<? super T>> implements Queue<T
      */
     @Override
     public boolean addAll(Collection<? extends T> c) {
-        return heap.addAll(c);
+        boolean modified = heap.addAll(c);
+        for (int i = (heap.size() / 2) - 1; i >= 0; i--) {
+            bubbleDown(i); // Heapify the entire heap
+        }
+        return modified;
     }
 
     /**
@@ -247,7 +265,7 @@ public class MyPriorityQueue<T extends Comparable<? super T>> implements Queue<T
      */
     @Override
     public boolean add(T e) {
-        return heap.add(e);
+        return offer(e);
     }
 
     /**
