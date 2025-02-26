@@ -56,7 +56,7 @@ The system compares two priority queue implementations:
 
 1. Clone the repository:
    ```bash
-   git clone <GitHub_Repository_Link>
+   git clone https://github.com/henry-jessica/DSA-Project.git
    ```
 
 2. Navigate to the project directory:
