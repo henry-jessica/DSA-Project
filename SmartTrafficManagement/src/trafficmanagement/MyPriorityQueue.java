@@ -7,15 +7,20 @@ import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Queue;
 
+/**
+ * An implementation of a priority queue using an {@link ArrayList} as a binary
+ * heap.
+ * 
+ * <p>
+ * This implementation does not maintain heap properties to improve performance.
+ * Operations like insertion and removal are O(log(n)) and retrieval is O(1).
+ * </p>
+ * 
+ * @param <T> The type of elements stored in the priority queue. Must implement
+ *            {@link Comparable}.
+ */
 public class MyPriorityQueue<T extends Comparable<? super T>> implements Queue<T> {
-    private final List<T> heap; // Underlying array structure for the heap
-
-    /**
-     * Constructor to initialize an empty priority queue.
-     */
-    public MyPriorityQueue() {
-        heap = new ArrayList<>();
-    }
+    private final List<T> heap = new ArrayList<>(); // Underlying array structure for the heap
 
     /**
      * Inserts the specified element into this priority queue.

@@ -3,6 +3,13 @@ package trafficmanagement;
 import java.util.Queue;
 import java.util.concurrent.ThreadLocalRandom;
 
+/**
+ * Tests the performance of the two queue implementations and prints the results
+ * to the terminal.
+ * This test fills each of the structures from empty many times, then prints the
+ * average time taken. It performs this process for many different input sizes.
+ * The range of input sizes can be specified by changing the constants.
+ */
 public class ComplexityTest {
     static final int MIN_PRIORITY = 1;
     static final int MAX_PRIORITY = 5;
